@@ -1,0 +1,4 @@
+n,rejections,negativity_rate,critical_value,band_low,band_high,neighbor_low,neighbor_high
+4096,500,0.876,11.1296,0.22,0.9,1.08,1.26
+16384,500,0.98,11.0582,0.22,0.9,1.08,1.26
+65536,500,1.0,10.9988,0.22,0.9,1.08,1.26

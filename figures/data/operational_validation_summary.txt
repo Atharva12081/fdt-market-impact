@@ -1,0 +1,4 @@
+Rolling-window operational validation
+equilibrium: sessions=20, rejection_rate=0.0, avg_theta_hat=0.34086, avg_peak_abs_delta=0.32776
+transition: sessions=20, rejection_rate=0.1, avg_theta_hat=0.38168, avg_peak_abs_delta=0.54619
+stress: sessions=20, rejection_rate=0.65, avg_theta_hat=0.65307, avg_peak_abs_delta=2.73138

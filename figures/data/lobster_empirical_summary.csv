@@ -1,0 +1,4 @@
+symbol,window,n_obs,m,eta_scale,theta_hat,test_stat,critical_value,p_value,deviation_ratio,reject_5pct
+AAPL,Open,90,2,0.5,4.074109,0.0009,0.0237,1.0,0.2158,0
+AAPL,Midday,180,3,0.5,1.16674,0.018,0.0105,0.003,1.1036,1
+AAPL,Close,89,2,0.5,2.224823,0.0014,0.004,0.358,0.6856,0

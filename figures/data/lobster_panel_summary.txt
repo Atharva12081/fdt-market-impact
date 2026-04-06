@@ -1,0 +1,15 @@
+LOBSTER cross-section pilot (1-minute bins, June 21 2012)
+AAPL Open: theta_hat=4.074109, p=0.998, ratio=0.2158, reject=0
+AAPL Midday: theta_hat=1.16674, p=0.009, ratio=1.1036, reject=1
+AAPL Close: theta_hat=2.224823, p=0.371, ratio=0.6856, reject=0
+GOOG Open: theta_hat=0.217086, p=0.92, ratio=0.2937, reject=0
+GOOG Midday: theta_hat=0.452322, p=0.406, ratio=0.5568, reject=0
+GOOG Close: theta_hat=1.798101, p=0.447, ratio=0.5827, reject=0
+AMZN Open: theta_hat=3.830001, p=0.886, ratio=0.3219, reject=0
+AMZN Midday: theta_hat=2.674543, p=0.297, ratio=0.6119, reject=0
+AMZN Close: theta_hat=0.815109, p=0.563, ratio=0.5194, reject=0
+
+aggregate
+AAPL: avg_theta_hat=2.488557, max_deviation_ratio=1.1036, reject_count=1, valid_windows=3, failed_windows=
+GOOG: avg_theta_hat=0.822503, max_deviation_ratio=0.5827, reject_count=0, valid_windows=3, failed_windows=
+AMZN: avg_theta_hat=2.439884, max_deviation_ratio=0.6119, reject_count=0, valid_windows=3, failed_windows=

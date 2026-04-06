@@ -1,0 +1,13 @@
+n=4096, m=8, critical=11.5635, size=0.048, power=0.18
+n=16384, m=16, critical=11.9274, size=0.034, power=0.328
+n=65536, m=32, critical=11.573, size=0.036, power=0.68
+
+neighboring-band-check
+n=4096, rejections=118, criterion_rate=0.0, negativity_rate=0.424, band=[0.22,0.9], neighbor=[1.08,1.26]
+n=16384, rejections=172, criterion_rate=0.0, negativity_rate=0.599, band=[0.22,0.9], neighbor=[1.08,1.26]
+n=65536, rejections=330, criterion_rate=0.0, negativity_rate=0.809, band=[0.22,0.9], neighbor=[1.08,1.26]
+
+manipulation-signal-check
+n=4096, rejections=500, negativity_rate=0.876, critical=11.1296, band=[0.22,0.9], neighbor=[1.08,1.26]
+n=16384, rejections=500, negativity_rate=0.98, critical=11.0582, band=[0.22,0.9], neighbor=[1.08,1.26]
+n=65536, rejections=500, negativity_rate=1.0, critical=10.9988, band=[0.22,0.9], neighbor=[1.08,1.26]

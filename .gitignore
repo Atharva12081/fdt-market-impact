@@ -1,0 +1,14 @@
+.DS_Store
+*.aux
+*.log
+*.out
+*.synctex
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+paper.pdf
+paper_before_figures.pdf
+paper_test_append.pdf
+paper\ 2.synctex(busy)
+figures_preview.html
+Untitled document.txt
