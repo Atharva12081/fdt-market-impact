@@ -1,6 +1,10 @@
 \documentclass[11pt]{article}
 
-\usepackage[a4paper,margin=1in]{geometry}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\usepackage{cmap}
+\usepackage[a4paper,margin=1in,includeheadfoot]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -12,6 +16,8 @@
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyhdr}
 \usepackage{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 
@@ -21,6 +27,14 @@
   citecolor=blue,
   urlcolor=blue
 }
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small A Conditional Fluctuation--Dissipation Identity for Market Impact}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{14pt}
 
 \definecolor{deepnavy}{HTML}{0D1B2A}
 \definecolor{signalblue}{HTML}{1D4ED8}
@@ -44,14 +58,14 @@
 \newcommand{\Var}{\operatorname{Var}}
 \newcommand{\TV}{\operatorname{TV}}
 \newcommand{\RePart}{\operatorname{Re}}
-\newcommand{\ImPart}{\operatorname{Im}}
+\newcommand{\ImPart}{\operatorname{Im}_{\!+}}
 \newcommand{\dd}{\,\mathrm{d}}
 \newcommand{\REV}{}
 
 \title{A Conditional Fluctuation--Dissipation Identity for Market Impact:\\
-Diagnostics, Reconstruction, and an Order-Book Pilot}
+Diagnostics, Reconstruction, and Order-Book Evidence}
 \author{Atharva Parande\\MIT ADT University\\Computer Science}
-\date{April 2026}
+\date{May 2026}
 
 \begin{document}
 
@@ -59,12 +73,43 @@ Diagnostics, Reconstruction, and an Order-Book Pilot}
 
 \begin{abstract}
 \REV
-In physical systems at equilibrium, the response to an external perturbation is tied to the system's own fluctuations through the fluctuation--dissipation theorem (FDT). This paper asks whether an analogous relation can be formulated for transient market impact. We work with Stieltjes propagator kernels, namely completely monotone impact kernels that are compatible with no-dynamic-arbitrage in linear impact models, and study the conditional implications of an explicit latent modal equilibrium model. Under that model one obtains the frequency-domain identity
+Market impact and price volatility are usually studied as separate objects. This paper asks whether they can be compared in a single frequency-domain framework. The core idea is a conditional fluctuation--dissipation relation: if price pressure is carried by hidden liquidity modes that decay at characteristic speeds, then the dissipative part of the market's impact response must line up with its price fluctuation spectrum through
 \[
   \ImPart \Ghat(i\omega)=\frac{\omega}{2\Theta}S_P(\omega),
 \]
-where $\Ghat$ is the Fourier--Laplace transform of the impact kernel, $S_P$ is the price power spectral density, and $\Theta$ is a scalar market thermal index. The value of the identity is empirical as much as theoretical: it yields a falsifiable equilibrium restriction, a structured inverse problem for the hidden relaxation measure, and a market-state map built from thermal intensity and equilibrium deviation. The paper develops a linear-Gaussian Kyle--OU foundation, a converse characterization in second-order law, a uniqueness result for $\Theta$ on nondegenerate frequency bands, an explicit testing procedure, and a constrained spectral reconstruction program. Monte Carlo experiments show correct size and rising power. Real-data evidence based on public LOBSTER order-book samples for June 21, 2012 finds that AAPL is broadly FDT-consistent at the open and close but rejected at midday with $p=0.003$, while the inferred thermal index moves from $4.07$ to $1.17$ and then back to $2.22$. A same-date cross-section across AAPL, GOOG, and AMZN shows that this midday breakdown is not mechanically present in every liquid name, which supports the interpretation of the diagnostic as a market-state filter rather than a tautological intraday pattern.
+where $\Ghat$ is the impact kernel in frequency space, $S_P$ is the price spectrum, and $\Theta$ is a single market thermal index. The relation is used as a testable benchmark rather than a universal claim: when the two sides match, the market is consistent with the model; when they separate, the model is rejected on that frequency band.
+
+The paper develops the latent modal equilibrium model from which this identity follows, constructs a practical spectral test and a null-enforcing bootstrap, and builds an inverse problem for recovering the hidden relaxation spectrum. Monte Carlo simulations show controlled size and increasing power as sample size grows. An empirical illustration using public order-book data from June 2012 identifies one rejecting intraday window in a three-stock cross-section, though the evidence is too narrow for broader market-structure claims. A separate May 2026 public-bar proxy screen for five U.S. and five Indian stocks is reported as a recency check: the signed-square-root-volume proxy retains 28 windows with 11 rejections, while raw signed-volume retains none. These results are preliminary, but they demonstrate that the diagnostic can separate ordinary intraday variation from a specific breakdown in the impact-volatility relation.
 \end{abstract}
+
+\noindent\textbf{Keywords:} market impact; fluctuation--dissipation; spectral analysis; order-book microstructure; Stieltjes kernel; latent modal equilibrium
+
+\begin{table}[t]
+\centering
+\caption{Notation guide}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}p{0.65\textwidth}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$\Ghat(i\omega)$ & Fourier--Laplace transform of the impact kernel $G(t)$ \\
+$\ImPart \Ghat(i\omega)$ & Positive dissipative (imaginary) part of $\Ghat$ \\
+$S_P(\omega)$ & Price power spectral density \\
+$\Theta$ & Market thermal index (scalar) \\
+$\widehat\Theta$ & Median-of-ratios estimate of $\Theta$ \\
+$\Delta(\omega)$ & FDT deviation functional: $\ImPart\Ghat(i\omega)-\frac{\omega}{2\Theta}S_P(\omega)$ \\
+$\widehat\Delta(\omega_j)$ & Estimated deviation at Fourier frequency $\omega_j$ \\
+$\widehat G_\eta(\omega_j)$ & Ridge-regularized transfer estimator at $\omega_j$ \\
+$\eta_n$ & Ridge parameter for spectral inversion \\
+$M(\dd\rho)$ & Stieltjes relaxation measure on $(0,\infty)$ \\
+$r_t$ & Log return over interval $t$ \\
+$q_t$ & Signed order imbalance over interval $t$ \\
+$\cT_n$ & Bootstrap test statistic \\
+$m$ & Smoothing-window half-width (Fourier frequencies) \\
+\bottomrule
+\end{tabular}
+\label{tab:notation}
+\end{table}
 
 \section{Introduction and Motivation}
 
@@ -78,10 +123,14 @@ The main identity proposed in this manuscript is
   \qquad \text{for a.e.\ }\omega>0.
 \end{equation}
 Here $\Theta$ is a market thermal index: large values indicate abundant noise-trader activity relative to permanent impact, while small values indicate a colder and potentially more fragile market.
-The paper does not claim to derive this identity from a fully general strategic equilibrium model. Instead, it formulates a latent modal equilibrium model under which the identity must hold and then asks whether that restriction is empirically useful and empirically falsifiable.
+The paper does not claim to derive this identity from a fully general strategic equilibrium model. Instead, it formulates a latent modal equilibrium model under which the identity must hold and then asks whether that restriction is empirically useful and empirically falsifiable. The theory is deliberately more ambitious than the empirical evidence can fully support; the gap between the two is the central limitation of the study and is addressed explicitly in the closing sections.
 
 \begin{remark}[Why the conditional framing is still powerful]
 The central empirical content of the paper lies in rejection as much as in confirmation. If the FDT restriction fails on a frequency band of positive measure, then the observed market cannot belong to the latent modal equilibrium class studied here. In that sense the paper should be read as a falsification framework for an economically structured model class, not merely as an attempt to confirm one specific mechanism.
+\end{remark}
+
+\begin{remark}[Proof-of-concept framing]
+The paper is intended as a theoretical and empirical proof-of-concept rather than a definitive market-wide validation. The empirical evidence is narrow and preliminary, and the framework's practical value will depend on future multi-week, multi-market studies using licensed TAQ data.
 \end{remark}
 
 \subsection{Contributions}
@@ -92,7 +141,7 @@ The paper makes five concrete contributions:
   \item A conditional fluctuation--dissipation identity and a converse characterization, yielding an equivalence in second-order law between the FDT restriction and a latent modal representation.
   \item A testing theory for the thermal index and the deviation functional, including a median-of-ratios estimator, a null distribution, and a null-enforcing bootstrap.
   \item A constrained inverse problem for recovering the latent relaxation spectrum, together with matrix-valued extensions of the identity, test statistic, and reconstruction step.
-  \item An empirical layer consisting of Monte Carlo evidence, rolling synthetic validation, and real-data LOBSTER evidence with a same-date three-name cross-section.
+  \item An empirical layer consisting of Monte Carlo evidence, rolling synthetic validation, real-data LOBSTER evidence with a same-date three-name cross-section, and a clearly separated May 2026 public-bar proxy screen.
 \end{enumerate}
 
 \subsection{Related Literature}
@@ -102,7 +151,7 @@ This paper sits at the intersection of admissible transient-impact theory, spect
 \REV
 For rolling-window inference, the appropriate asymptotic backdrop is the locally stationary framework of Dahlhaus~\cite{Dahlhaus1997,Dahlhaus1996}, because the empirical sections allow thermal conditions and deviation profiles to evolve across the day even when each local window is treated as approximately stationary.
 
-The paper proceeds in three steps. \Cref{sec:equilibrium,sec:fdt} introduce the latent modal equilibrium class and the conditional FDT identity it implies. \Cref{sec:testing,sec:inverse} convert that identity into an estimable diagnostic and, when the null is not rejected, an inverse problem for the hidden relaxation spectrum. \Cref{sec:monte-carlo,sec:rolling,sec:lobster-pilot,sec:roadmap} then show what the diagnostic looks like in synthetic data and in a focused real-data order-book study.
+The paper proceeds in three steps. \Cref{sec:equilibrium,sec:fdt} introduce the latent modal equilibrium class and the conditional FDT identity it implies. \Cref{sec:testing,sec:inverse} convert that identity into an estimable diagnostic and, when the null is not rejected, an inverse problem for the hidden relaxation spectrum. \Cref{sec:monte-carlo,sec:rolling,sec:lobster-pilot,sec:roadmap} then show what the diagnostic looks like in synthetic data, in a focused real-data order-book study, and in a separate current public-bar proxy screen.
 
 \begin{figure}[t]
 \centering
@@ -140,6 +189,7 @@ Its Fourier--Laplace transform is
 \begin{equation}\label{eq:laplace-transform}
   \Ghat(z)=g_\infty + \int_0^\infty \frac{\rho}{\rho+z} M(\dd\rho), \qquad \RePart z>0.
 \end{equation}
+Throughout the paper $\ImPart \Ghat(i\omega)$ denotes the positive dissipative component, i.e. $-\operatorname{Im}\Ghat(i\omega)$ under the convention in \cref{eq:laplace-transform}. This sign convention matches the nonnegative Stieltjes representation in \cref{eq:imaginary-part} and the empirical estimator used below.
 
 Representative examples are:
 \begin{enumerate}[label=\arabic*.]
@@ -151,7 +201,7 @@ Representative examples are:
 \subsection{Core Structural Assumptions}
 \REV
 We use the following structural assumptions throughout the equilibrium and FDT sections:
-\begin{enumerate}[label=\textbf{A\arabic*}.]
+\begin{enumerate}[label=\textbf{A\arabic*}.,start=0]
   \item $G$ is a Stieltjes propagator with $g_\infty\succeq 0$ and positive relaxation measure $M$.
   \item Price follows \cref{eq:price-model}.
   \item $L(t)$ is a square-integrable martingale orthogonal to order flow.
@@ -159,6 +209,10 @@ We use the following structural assumptions throughout the equilibrium and FDT s
   \item Either $g_\infty\succ 0$ or $M$ has no atom at $\rho=0$.
 \end{enumerate}
 The additional assumptions used only for estimation and only for the inverse problem are consolidated at the start of \cref{sec:testing}, so that each theorem below can point to the exact layer of assumptions it uses.
+
+\begin{remark}[Model scope and strong assumptions]
+The framework rests on several strong restrictions that delimit its scope. First, the kernel $G$ is restricted to the Stieltjes class, which is economically motivated by no-manipulation admissibility but is not universal --- nonlinear impact, asymmetric response to buys versus sells, and regime-switching kernels are excluded by construction. Second, the price model in \cref{eq:price-model} is linear, which rules out nonlinear microstructure effects such as discontinuous order-book replenishment and price-contingent order flow. Third, the public-information martingale $L(t)$ is assumed orthogonal to order flow, a strong independence condition that may fail in practice when information events trigger both order arrivals and price revisions. The empirical tests therefore evaluate a structured null hypothesis --- the data are consistent with this specific latent modal equilibrium class --- rather than a universal property of all markets.
+\end{remark}
 
 \section{Equilibrium and the Market Thermal Index}\label{sec:equilibrium}
 
@@ -207,7 +261,7 @@ Under the additional reduced-form assumption that residual noise-trader activity
 \begin{equation}\label{eq:theta-def}
   \Theta := \frac{\sigma_N^2}{4\lambda}.
 \end{equation}
-Empirically, $\lambda$ is estimated via a Kyle-style impact regression, while $\sigma_N^2$ is estimated from residual signed order imbalance. In this study the proxy is best viewed as interpretive motivation rather than as a standalone identifying equation. Operationally, the empirical sections estimate $\Theta$ from the joint return-flow system and use \cref{eq:theta-def} only as a benchmark for interpretation. High $\Theta$ corresponds to a noisy but coherent market; large $|\Delta|$ corresponds to a breakdown of that coherence.
+Empirically, $\lambda$ is estimated via a Kyle-style impact regression~\cite{Kyle1985}, while $\sigma_N^2$ is estimated from residual signed order imbalance. In this study the proxy is best viewed as interpretive motivation rather than as a standalone identifying equation. Operationally, the empirical sections estimate $\Theta$ from the joint return-flow system and use \cref{eq:theta-def} only as a benchmark for interpretation. High $\Theta$ corresponds to a noisy but coherent market; large $|\Delta|$ corresponds to a breakdown of that coherence.
 
 \subsection{A Linear-Gaussian Kyle--OU Foundation}
 The latent modal model can also be motivated from a linear-Gaussian filtering problem. Consider a market in which noise-trader flow is generated by independent Ornstein--Uhlenbeck components,
@@ -697,7 +751,7 @@ The partial derivatives are
 On $\mathcal D$, B4 yields $b\ge c_G>0$ and $a\le C_a$, so both derivatives are uniformly bounded. The mean-value theorem then gives the stated Lipschitz bound.
 \end{proof}
 
-\begin{proof}
+\begin{proof}[Proof of \cref{prop:theta-rate}]
 \REV
 Under B1--B5, \cref{lem:uniform-spectral} applies simultaneously to $\widehat S_P$, $\widehat S_Q$, and $\widehat S_{PQ}$. Because B4 gives a uniform lower bound on $S_Q$, matrix inversion on the ridge-shifted band is Fr\'echet differentiable, and therefore
 \[
@@ -1173,6 +1227,10 @@ where $S=\operatorname{supp}(c^\star)$. The restricted-eigenvalue condition in C
 Because the support points are separated in log-scale by at least $\Delta_{\min}$, distinct true modes generate columns of $\Phi$ that are not nearly collinear on the chosen grid. Therefore any coefficient placed farther than $C\gamma$ from the true support in log-scale would contribute a prediction error exceeding the restricted-eigenvalue tolerance above. Equivalently, all nonzero coordinates of $\widehat c$ must lie inside the union of $O(\gamma)$ log-neighborhoods of the true support points. That is the claimed support localization.
 \end{proof}
 
+\begin{remark}[Practical utility of the inverse reconstruction]
+The spectral inverse problem is severely ill-posed (\cref{prop:severe-illposed}), with singular values decaying exponentially and a convergence rate of only $O(|\log\delta|^{-1})$ under logarithmic source conditions. In practical terms, even small noise in the estimated price spectrum translates into large uncertainties in the recovered relaxation measure. The LASSO discretization provides a tractable computational surrogate, but its support-localization guarantees depend on a log-scale separation condition (C3) that may not hold for real markets where relaxation times are continuously distributed. These caveats should be weighed when assessing the operational value of the kernel reconstruction: the main practical payoff of the framework lies in the diagnostic test and the market-state map, not in the inverse problem.
+\end{remark}
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/generated/relaxation_spectrum.png}
@@ -1182,7 +1240,7 @@ Because the support points are separated in log-scale by at least $\Delta_{\min}
 
 \section{Implementation Notes}
 \REV
-The implementation details are standard and we keep them brief. Microstructure noise is handled with pre-averaging using the Bartlett kernel in the sense of Jacod et al.~\cite{JacodEtAl2009}, and the same pre-averaged returns feed the smoothed periodograms. Jumps are filtered by thresholding in the spirit of Mancini~\cite{Mancini2009}. Multi-asset extensions use Hayashi--Yoshida-style covariance correction under asynchrony, while slowly varying regimes are handled through rolling-window estimation rather than through a separate long-memory asymptotic theory. Long-memory order flow itself is outside the scope of the present paper.
+The implementation details are standard and we keep them brief. Microstructure noise is handled with pre-averaging using the Bartlett kernel in the sense of Jacod et al.~\cite{JacodEtAl2009}, and the same pre-averaged returns feed the smoothed periodograms. Jumps are filtered by thresholding in the spirit of Mancini~\cite{Mancini2009}. Multi-asset extensions use Hayashi--Yoshida-style covariance correction under asynchrony~\cite{HayashiYoshida2005}, while slowly varying regimes are handled through rolling-window estimation rather than through a separate long-memory asymptotic theory. Long-memory order flow itself is outside the scope of the present paper.
 
 \section{Monte Carlo Evidence}\label{sec:monte-carlo}
 
@@ -1204,8 +1262,8 @@ The effective smoothing parameter $m$ denotes the number of frequencies in the l
 $n$ & Replications & Effective smoothing $m$ & Size (5\% nominal) & Power \\
 \midrule
 $2^{12}$ & 500 & 8  & $0.048\,(0.010)$ & $0.180\,(0.017)$ \\
-$2^{14}$ & 500 & 16 & $0.060\,(0.011)$ & $0.358\,(0.021)$ \\
-$2^{16}$ & 500 & 32 & $0.042\,(0.009)$ & $0.748\,(0.019)$ \\
+$2^{14}$ & 500 & 16 & $0.034\,(0.008)$ & $0.328\,(0.021)$ \\
+$2^{16}$ & 500 & 32 & $0.036\,(0.008)$ & $0.680\,(0.021)$ \\
 \bottomrule
 \end{tabular}
 \vspace{0.4em}
@@ -1270,7 +1328,7 @@ Table~\ref{tab:rolling-validation} shows the central pattern. Equilibrium window
 \section{Real-Data LOBSTER Evidence}\label{sec:lobster-pilot}
 
 \subsection{Data and Construction}
-To demonstrate that the pipeline can be executed on genuine stock-market data, we use public LOBSTER samples for June 21, 2012. The main single-name illustration is AAPL, and we also run the same protocol on same-date samples for GOOG and AMZN to obtain a minimal liquid-stock cross-section under a common market environment. The samples contain the full NASDAQ message stream and the synchronized top-of-book state over the continuous trading day from 9:30 to 16:00. We aggregate the data to one-minute bins. Midquote returns are computed from the last best bid and best ask observed in each bin, and signed order flow is computed from executed volume only, using LOBSTER event types 4 and 5 with the exchange-provided trade direction. This is not yet a multi-week TAQ panel, but it is genuine trade-and-quote style market data with true trade direction rather than a price-based proxy.
+To demonstrate that the pipeline can be executed on genuine stock-market data, we use public LOBSTER samples for June 21, 2012. The main single-name illustration is AAPL, and we also run the same protocol on same-date samples for GOOG and AMZN to obtain a minimal liquid-stock cross-section under a common market environment. The samples contain the full NASDAQ message stream and the synchronized top-of-book state over the continuous trading day from 9:30 to 16:00. We aggregate the data to one-minute bins. Midquote returns are computed from the last best bid and best ask observed in each bin, and signed order flow is computed from executed volume only, using LOBSTER event types 4 and 5 with the LOBSTER direction field. This is not yet a multi-week TAQ panel, but it is genuine message-data evidence with exchange-derived execution signs rather than a price-based proxy.\footnote{The raw public folder also contains MSFT and INTC samples. Under the retained-band positivity and nondegeneracy rule used for the reported estimator, those two names retained no valid open/midday/close window; no rejection or non-rejection claim is made for them.}
 
 \begin{remark}[Scope of the real-data evidence]
 The real-data exercise is intentionally narrow rather than broad. Its purpose is to show that the estimation and testing pipeline can be executed on genuine order-book data and can produce economically interpretable intraday regime differences. The same-date GOOG and AMZN comparison names help guard against a pure one-name anecdote, but the exercise is not intended to support market-wide claims.
@@ -1282,18 +1340,18 @@ We split the day into three economically interpretable windows: the open (9:30--
 \[
   \eta_n(\omega_j)=0.01\,\widehat S_Q(\omega_j),
 \]
-which is the exact rule implemented in the empirical script on the retained band.\footnote{\REV In the empirical implementation, replacing $\eta_n$ by $0.5\eta_n$ or $2\eta_n$ leaves the open/midday/close reject-vs.-nonreject classification unchanged and leaves the reported thermal-index and deviation-ratio patterns unchanged to the displayed precision. The ridge therefore stabilizes inversion without driving the substantive conclusions.}
+which is the exact rule implemented in the empirical script on the retained band.\footnote{\REV In the empirical implementation, replacing $\eta_n$ by $0.5\eta_n$ or $2\eta_n$ leaves the open/midday/close reject-vs.-nonreject classification unchanged and leaves the deviation-ratio pattern unchanged at the reported precision. The ridge therefore stabilizes inversion without driving the substantive conclusions.}
 
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \caption{AAPL LOBSTER evidence on June 21, 2012 (one-minute bins)}
 \begin{tabular}{lcccc}
 \toprule
 Window & $\widehat{\Theta}$ & Deviation ratio & Bootstrap $p$-value & Reject at $5\%$ \\
 \midrule
-Open   & 4.074 & 0.216 & 1.000 & No \\
-Midday & 1.167 & 1.104 & 0.003 & Yes \\
-Close  & 2.225 & 0.686 & 0.358 & No \\
+Open   & 4.094 & 0.216 & 1.000 & No \\
+Midday & 1.173 & 1.104 & 0.003 & Yes \\
+Close  & 2.236 & 0.686 & 0.358 & No \\
 \bottomrule
 \end{tabular}
 \vspace{0.4em}
@@ -1304,7 +1362,7 @@ Close  & 2.225 & 0.686 & 0.358 & No \\
 
 The central empirical point is not that the FDT always holds or always fails. It is that the diagnostic separates regimes inside a single real trading day. On this AAPL sample, the opening and closing windows produce low deviation ratios and no rejection, whereas the midday block yields a sharp break with bootstrap $p=0.003$. Figure~\ref{fig:lobster-empirical} shows the same story visually: the normalized dissipation curve and normalized FDT benchmark lie close together in the opening and closing windows, but visibly separate at midday. The lower panel tracks the rolling thermal index across the day and marks the windows where the test rejects.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/generated/lobster_empirical.png}
 \caption{AAPL LOBSTER evidence. Top row: normalized $\ImPart\Ghat(i\omega)$ (blue) against the normalized FDT benchmark $(\omega/(2\widehat{\Theta}))\widehat{S}_P(\omega)$ (dashed red) for the open, midday, and close windows. Bottom row: the rolling estimate of the thermal index $\widehat{\Theta}$ over the day; red markers identify rolling windows where the bootstrap test rejects at the $5\%$ level. The figure highlights an important distinction: $\widehat{\Theta}$ is a market-state variable, whereas $\widehat{\Delta}$ is the equilibrium-breakdown diagnostic.}
@@ -1315,27 +1373,27 @@ The central empirical point is not that the FDT always holds or always fails. It
 The LOBSTER evidence suggests two empirical lessons. First, the proposed FDT diagnostic is not vacuous: it can survive contact with real order-book data without rejecting everywhere. Second, the thermal index and the deviation functional play different roles. In AAPL, the open has the largest estimated $\widehat{\Theta}$ but does not reject, which is consistent with an active but internally coherent market. Midday has a smaller $\widehat{\Theta}$ yet a much larger deviation ratio, indicating that ``temperature'' and ``distance from equilibrium'' should not be conflated. The current evidence is narrow rather than broad, but even this same-date cross-section shows why the two objects should be estimated jointly.
 
 \subsection{Same-Date Cross-Section}
-To check whether the AAPL intraday pattern is purely idiosyncratic, we run the
-same open/midday/close protocol on public same-date LOBSTER samples for GOOG
-and AMZN. Table~\ref{tab:lobster-cross-section} summarizes the resulting
+To test whether the AAPL intraday pattern is idiosyncratic, we apply the same
+open/midday/close protocol to public same-date LOBSTER samples for GOOG and
+AMZN. Table~\ref{tab:lobster-cross-section} summarizes the resulting
 diagnostics.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \caption{Same-date LOBSTER cross-section on June 21, 2012 (one-minute bins)}
 \begin{tabular}{llccc}
 \toprule
 Symbol & Window & $\widehat{\Theta}$ & Deviation ratio & Reject at $5\%$ \\
 \midrule
-AAPL & Open   & 4.074 & 0.216 & No \\
-AAPL & Midday & 1.167 & 1.104 & Yes \\
-AAPL & Close  & 2.225 & 0.686 & No \\
-GOOG & Open   & 0.217 & 0.294 & No \\
-GOOG & Midday & 0.452 & 0.557 & No \\
-GOOG & Close  & 1.798 & 0.583 & No \\
-AMZN & Open   & 3.830 & 0.322 & No \\
-AMZN & Midday & 2.675 & 0.612 & No \\
-AMZN & Close  & 0.815 & 0.519 & No \\
+AAPL & Open   & 4.094 & 0.216 & No \\
+AAPL & Midday & 1.173 & 1.104 & Yes \\
+AAPL & Close  & 2.236 & 0.686 & No \\
+GOOG & Open   & 0.218 & 0.294 & No \\
+GOOG & Midday & 0.455 & 0.557 & No \\
+GOOG & Close  & 1.807 & 0.583 & No \\
+AMZN & Open   & 3.849 & 0.322 & No \\
+AMZN & Midday & 2.688 & 0.612 & No \\
+AMZN & Close  & 0.819 & 0.519 & No \\
 \bottomrule
 \end{tabular}
 \vspace{0.4em}
@@ -1346,7 +1404,7 @@ AMZN & Close  & 0.815 & 0.519 & No \\
 
 The cross-section changes the empirical reading of the results in an important way. The AAPL midday rejection is no longer just a one-name anecdote inside one day; it now stands against two same-date comparison names that do not reject in any of the three windows. GOOG is especially informative: its thermal index rises from the open into midday, yet the deviation ratio remains moderate and the null is not rejected, which points to a more active but still coherent liquidity state rather than a powerless test in a thin name. AMZN shows the same broader pattern of thermal variation without a corresponding equilibrium break. This remains narrower than panel evidence, but it is materially stronger than a single-series illustration.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{figures/generated/realdata_breakdown.png}
 \caption{Real-data same-date cross-section. Left: deviation ratios for AAPL, GOOG, and AMZN across the open, midday, and close windows, with the rejecting cell outlined in red. Right: the corresponding thermal-index paths. The key empirical fact is compact: only AAPL exhibits a large midday breakdown signal, while GOOG and AMZN show thermal variation without rejection.}
@@ -1355,17 +1413,41 @@ The cross-section changes the empirical reading of the results in an important w
 
 Figure~\ref{fig:realdata-breakdown} is the sharpest real-data finding in the paper. Out of the nine symbol-window cells in this public same-date study, only AAPL midday rejects. That is not a full panel study, but it is already stronger than a single-name illustration because it shows that the diagnostic is not merely echoing the common intraday shape of liquidity.
 
+\subsection{Recent Public-Bar Proxy Screen}\label{sec:recent-proxy}
+\REV
+The June 2012 LOBSTER samples remain the main real-data evidence because they contain signed execution information. To address recency, the replication package also includes a current public-data screen using 5-minute OHLCV bars. The screen covers AAPL, MSFT, JPM, XOM, and NVDA over May 15--29, 2026, and RELIANCE.NS, HDFCBANK.NS, INFY.NS, TCS.NS, and ICICIBANK.NS over May 18--29, 2026. Each trading day is split into open, midday, and close thirds, and two price-based order-flow proxies are checked: signed volume and signed square-root volume.
+
+This screen should be read as a recency check, not as order-book evidence. The raw signed-volume proxy does not pass the retained-frequency positivity filter in any of the 30 attempted windows. The signed-square-root-volume proxy is better behaved: it produces 28 usable windows, with 4 rejections in the U.S. sample and 7 rejections in the India sample. The result shows that the pipeline can be run on current public stock-market data, but it also shows why the paper keeps the main evidentiary weight on signed message data.
+
+\begin{table}[H]
+\centering
+\caption{Recent public OHLCV proxy screen (5-minute bars, May 2026)}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Market & Sample dates & Raw valid & Sqrt valid & Sqrt rejects & Avg. $\widehat{\Theta}$ & Avg. ratio \\
+\midrule
+U.S. & May 15--29, 2026 & 0/15 & 14/15 & 4/14 & 1.792 & 0.577 \\
+India & May 18--29, 2026 & 0/15 & 14/15 & 7/14 & 1.478 & 0.726 \\
+\bottomrule
+\end{tabular}
+\vspace{0.4em}
+
+\parbox{0.94\textwidth}{\footnotesize ``Raw valid'' reports retained windows for the signed-volume proxy. ``Sqrt valid'' and ``Sqrt rejects'' report retained windows and bootstrap rejections for the signed-square-root-volume proxy. The table is based on public 5-minute bars rather than signed executions, so it is reported as a proxy-tier screen only.}
+\label{tab:recent-proxy}
+\end{table}
+
 \subsection{A Market-State Map}
 The most compact way to summarize the empirical program is to treat $\widehat{\Theta}$ and the deviation magnitude as two separate coordinates. Figure~\ref{fig:market-state-map} places the synthetic equilibrium, transition, and stress regimes alongside the real AAPL windows in the same plane. The resulting picture is useful because it turns an abstract identity into a state map: low-deviation points sit near equilibrium regardless of whether the market is ``cold'' or ``hot,'' while large-deviation points move into a breakdown region. This is where the paper has its clearest empirical payoff.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{figures/generated/market_state_map.png}
 \caption{Market-state map. The horizontal axis is the thermal index and the vertical axis is a deviation magnitude: average peak $|\widehat{\Delta}|$ for the synthetic validation regimes and $\|\widehat{\Delta}\|_{L^2}/\|\ImPart \widehat{G}\|_{L^2}$ for the AAPL windows. Synthetic equilibrium, transition, and stress regimes occupy clearly separated zones, while the AAPL open, midday, and close windows land in empirically interpretable regions of the same map. The visual message is simple: temperature and equilibrium breakdown are distinct coordinates.}
 \label{fig:market-state-map}
 \end{figure}
 
-\section{Interpretation and Next Empirical Step}\label{sec:roadmap}
+\section{Interpretation and Scope}\label{sec:roadmap}
 
 \subsection{What rejection means}
 \REV
@@ -1373,26 +1455,35 @@ The paper should be read as a falsification framework for a structured equilibri
 
 \subsection{Current empirical limits}
 \REV
-The real-data evidence in this paper should be read as a focused order-book study, not as a market-wide validation exercise. The current cross-section is same-date and small by construction, so its role is to show that the diagnostic can isolate a concrete breakdown cell in genuine message data while avoiding blanket rejection elsewhere. Broader panel claims are therefore not inferred from this sample.
+The real-data evidence in this paper is severely limited and should be read as a focused order-book study, not as a market-wide validation exercise. The LOBSTER cross-section is a single-date $3\times3$ table in which only one cell (AAPL midday) rejects. A single rejection in nine cells is not statistically convincing for broader claims about market structure, and without a multi-week panel or cross-sector analysis it remains unclear whether the AAPL midday signal reflects a genuine economic breakdown or an estimation artifact specific to that stock, window, and day.
 
-\subsection{Next empirical step}
+The May 2026 public-bar screen improves recency but not identification quality. Only 28 windows survived the retained-band filter, with 11 rejections distributed unevenly across two markets. This is too sparse for current-market validation and relies on price-based signed-flow proxies rather than exchange-signed executions. Broader panel claims are therefore not inferred from either sample.
+
+\subsection{Proxy-tier extensions}
 \REV
-The cleanest next empirical test is an event study around scheduled macro announcements. The model makes a sharp prediction: the deviation ratio should spike in the announcement window and then mean-revert, while $\widehat{\Theta}$ captures the surrounding liquidity regime. That design is more informative than simply adding more intraday plots because it asks the framework to succeed or fail against an externally timed stress event.
+The repository includes an exploratory OHLCV proxy-screen script for deployments where signed message data are not available. \Cref{sec:recent-proxy} reports the resulting May 2026 screen because it is useful for recency and operational transparency. The reason it remains proxy-tier is simple: bar data do not contain true execution direction, so any signed-flow proxy would require its own market-specific calibration before supporting stress-monitoring claims. This is a meaningful practical constraint, because the price-based proxies tested here (signed volume and signed square-root volume) largely fail to retain valid windows under the estimator's filter. Practical deployment of the diagnostic outside of research contexts would therefore depend on access to licensed TAQ feeds, which most practitioners lack.
+
+The publishable order-book evidence is therefore still the public LOBSTER message-data study.
 
 \subsection{Data and Code Availability}
-Simulation code, plotting scripts, and the real-data analysis scripts used for the reported figures are collected in the public replication repository at \url{https://github.com/Atharva12081/fdt-market-impact}. The current real-data study is based on public LOBSTER samples for AAPL, GOOG, and AMZN on June 21, 2012. Replication files for any proprietary TAQ extension can be shared only subject to vendor licensing constraints. The author thanks colleagues and seminar participants for helpful discussions. No external funding was received, and the author declares no competing interests. Additional robustness checks and extended tables are described in the online supplement.
+Simulation code, plotting scripts, figure data, and the real-data analysis scripts used for the reported figures are collected in the public replication repository at \url{https://github.com/Atharva12081/fdt-market-impact}. The order-book study is based on public LOBSTER samples for AAPL, GOOG, and AMZN on June 21, 2012, with MSFT and INTC retained in the raw data folder but excluded by the estimator's retained-band filter. The recent proxy screen is generated by \texttt{scripts/run\_recent\_market\_proxy.py}, which downloads public 5-minute OHLCV bars and writes \texttt{figures/data/recent\_market\_proxy\_results.csv} and \texttt{figures/data/recent\_market\_proxy\_summary.txt}. Any future extension using licensed TAQ data remains subject to the corresponding vendor restrictions. The author thanks colleagues and seminar participants for helpful discussions. No external funding was received, and the author declares no competing interests.
 
 \section{Conclusion}
 \REV
-This study develops a conditional fluctuation--dissipation framework for transient market impact that is both structurally coherent and empirically testable. On the theory side, it analyzes the consequences of an explicit latent modal equilibrium model, links the resulting identity to passivity and no manipulation, and gives a linear-Gaussian foundation for the modal scaling. The converse theorem should be read in that same conditional spirit: it is a second-order-law characterization of the latent modal class, not a strategic derivation of equilibrium from unrestricted primitives. On the statistical side, the paper provides a concrete test, a structured inverse problem, controlled Monte Carlo evidence, and real-data LOBSTER evidence showing that the diagnostic can hold, fail, and recover within a single trading date across multiple names. The strongest payoff is empirical rather than axiomatic: once the thermal index and deviation functional are estimated jointly, they organize both synthetic and real observations into a coherent market-state map. In the data studied here, that map isolates one clear breakdown cell, AAPL at midday, while the same-date GOOG and AMZN windows remain non-rejecting.
+This study develops a conditional fluctuation--dissipation framework for transient market impact that is both structurally coherent and empirically testable. On the theory side, it analyzes the consequences of an explicit latent modal equilibrium model, links the resulting identity to passivity and no manipulation, and gives a linear-Gaussian foundation for the modal scaling. On the statistical side, the paper provides a concrete test, a structured inverse problem, controlled Monte Carlo evidence, and empirical illustrations.
+
+The empirical contribution is narrow by design. The LOBSTER cross-section is a single-date $3\times3$ table with one rejecting cell, which limits any broader market-structure claim. The May 2026 proxy screen is weakened by its reliance on price-based signed-flow proxies. The theory is more ambitious than the evidence can fully support, and the gap between the latent modal equilibrium class and the narrow empirical test is the main limitation of the paper as it stands.
+
+Within these bounds, the strongest payoff is the separation of the thermal index and the deviation functional into two distinct coordinates. In the signed order-book data studied here, that separation identifies one breakdown cell --- AAPL at midday --- while the same-date GOOG and AMZN windows remain non-rejecting. Whether this reflects a genuine market structure break or an estimation artifact cannot be settled with the current single-day panel. Extending the analysis to multi-week, multi-sector TAQ panels is the natural next step.
 
 \appendix
 
 \section{Empirical Construction Details}
 \REV
-The LOBSTER study uses message-file event types $4$ and $5$ only, corresponding respectively to visible and hidden executions. The trading day is partitioned into consecutive one-minute bins on $[9{:}30,16{:}00)$, and each message is assigned to the unique bin containing its exchange timestamp. The midquote in a bin is the last observed top-of-book midpoint in that bin, namely $(\text{best ask}+\text{best bid})/2$, with carry-forward of the most recent midpoint if no new quote arrives before the bin closes. Signed order flow is the sum of executed shares in the bin with the sign taken directly from the LOBSTER trade-direction field in the message file, so buyer-initiated trades enter with sign $+1$ and seller-initiated trades with sign $-1$. Returns are one-minute log differences of the carried-forward midquote sequence. The ridge-regularized transfer estimator uses the local rule $\eta_n(\omega_j)=0.01\,\widehat S_Q(\omega_j)$ on the retained band.
+The LOBSTER study uses message-file event types $4$ and $5$ only, corresponding respectively to visible and hidden executions. The trading day is partitioned into consecutive one-minute bins on $[9{:}30,16{:}00)$, and each message is assigned to the unique bin containing its exchange timestamp. The midquote in a bin is the last observed top-of-book midpoint in that bin, namely $(\text{best ask}+\text{best bid})/2$, with carry-forward of the most recent midpoint if no new quote arrives before the bin closes. Signed order flow is the sum of executed shares in the bin with the sign taken directly from the LOBSTER direction field: $+1$ denotes execution of a buy limit order and $-1$ denotes execution of a sell limit order. Returns are one-minute log differences of the carried-forward midquote sequence. The ridge-regularized transfer estimator uses the local rule $\eta_n(\omega_j)=0.01\,\widehat S_Q(\omega_j)$ on the retained band.
 
-\section{Selected References}
+\REV
+The May 2026 proxy screen uses public 5-minute OHLCV bars. Timestamps are converted to the local exchange timezone, each trading day is split into three equal open/midday/close blocks, and returns are log differences of bar closes. The signed-volume proxy sets $Q_t=\operatorname{sign}(r_t)V_t$, while the signed-square-root-volume proxy sets $Q_t=\operatorname{sign}(r_t)\sqrt{V_t}$, where $V_t$ is bar volume. These are price-based proxies, not signed executions. For that reason the proxy screen is reported separately from the LOBSTER evidence and is not used to calibrate the order-book conclusions.
 \begin{thebibliography}{99}
 
 \bibitem{AbiJaberNeuman2025}

@@ -1,0 +1,71 @@
+Recent public-data FDT proxy screen
+Caveat: order flow is proxied from 5-minute bars, not true signed trade flow.
+
+India | signed_sqrt_volume
+  HDFCBANK.NS: valid=3/3, rejects=0/3, avg_theta=3.754, avg_ratio=0.502, failed=0/3, sample=2026-05-18 to 2026-05-29
+    Open: theta=5.758, ratio=0.618, p=0.170, reject=0
+    Midday: theta=1.110, ratio=0.455, p=0.533, reject=0
+    Close: theta=4.393, ratio=0.432, p=0.537, reject=0
+  ICICIBANK.NS: valid=2/3, rejects=1/2, avg_theta=0.791, avg_ratio=0.703, failed=1/3, sample=2026-05-18 to 2026-05-29
+    Midday: theta=1.368, ratio=0.839, p=0.020, reject=1
+    Close: theta=0.214, ratio=0.567, p=0.217, reject=0
+    failed: Open (Window Open retained too few positive frequencies.)
+  INFY.NS: valid=3/3, rejects=3/3, avg_theta=1.088, avg_ratio=0.877, failed=0/3, sample=2026-05-18 to 2026-05-29
+    Open: theta=2.207, ratio=0.946, p=0.003, reject=1
+    Midday: theta=0.401, ratio=0.774, p=0.037, reject=1
+    Close: theta=0.657, ratio=0.911, p=0.000, reject=1
+  RELIANCE.NS: valid=3/3, rejects=1/3, avg_theta=0.673, avg_ratio=0.799, failed=0/3, sample=2026-05-18 to 2026-05-29
+    Open: theta=0.821, ratio=0.991, p=0.000, reject=1
+    Midday: theta=0.419, ratio=0.748, p=0.057, reject=0
+    Close: theta=0.778, ratio=0.659, p=0.060, reject=0
+  TCS.NS: valid=3/3, rejects=2/3, avg_theta=0.855, avg_ratio=0.743, failed=0/3, sample=2026-05-18 to 2026-05-29
+    Open: theta=0.546, ratio=0.821, p=0.043, reject=1
+    Midday: theta=0.251, ratio=0.661, p=0.103, reject=0
+    Close: theta=1.769, ratio=0.749, p=0.030, reject=1
+
+India | signed_volume
+  HDFCBANK.NS: valid=0/3, failed=3/3, sample=2026-05-18 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  ICICIBANK.NS: valid=0/3, failed=3/3, sample=2026-05-18 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  INFY.NS: valid=0/3, failed=3/3, sample=2026-05-18 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  RELIANCE.NS: valid=0/3, failed=3/3, sample=2026-05-18 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  TCS.NS: valid=0/3, failed=3/3, sample=2026-05-18 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+
+US | signed_sqrt_volume
+  AAPL: valid=3/3, rejects=0/3, avg_theta=1.768, avg_ratio=0.520, failed=0/3, sample=2026-05-15 to 2026-05-29
+    Open: theta=2.445, ratio=0.290, p=0.980, reject=0
+    Midday: theta=1.234, ratio=0.689, p=0.080, reject=0
+    Close: theta=1.625, ratio=0.581, p=0.170, reject=0
+  JPM: valid=3/3, rejects=1/3, avg_theta=0.817, avg_ratio=0.662, failed=0/3, sample=2026-05-15 to 2026-05-29
+    Open: theta=1.210, ratio=0.533, p=0.277, reject=0
+    Midday: theta=0.692, ratio=0.841, p=0.013, reject=1
+    Close: theta=0.551, ratio=0.611, p=0.147, reject=0
+  MSFT: valid=3/3, rejects=3/3, avg_theta=1.879, avg_ratio=0.806, failed=0/3, sample=2026-05-15 to 2026-05-29
+    Open: theta=2.689, ratio=0.858, p=0.037, reject=1
+    Midday: theta=2.451, ratio=0.824, p=0.030, reject=1
+    Close: theta=0.496, ratio=0.736, p=0.030, reject=1
+  NVDA: valid=2/3, rejects=0/2, avg_theta=3.060, avg_ratio=0.326, failed=1/3, sample=2026-05-15 to 2026-05-29
+    Midday: theta=2.433, ratio=0.384, p=0.690, reject=0
+    Close: theta=3.686, ratio=0.269, p=0.990, reject=0
+    failed: Open (Window Open retained too few positive frequencies.)
+  XOM: valid=3/3, rejects=0/3, avg_theta=1.861, avg_ratio=0.486, failed=0/3, sample=2026-05-15 to 2026-05-29
+    Open: theta=4.154, ratio=0.588, p=0.153, reject=0
+    Midday: theta=0.454, ratio=0.444, p=0.640, reject=0
+    Close: theta=0.974, ratio=0.426, p=0.720, reject=0
+
+US | signed_volume
+  AAPL: valid=0/3, failed=3/3, sample=2026-05-15 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  JPM: valid=0/3, failed=3/3, sample=2026-05-15 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  MSFT: valid=0/3, failed=3/3, sample=2026-05-15 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  NVDA: valid=0/3, failed=3/3, sample=2026-05-15 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+  XOM: valid=0/3, failed=3/3, sample=2026-05-15 to 2026-05-29
+    failed: Open (Window Open retained too few positive frequencies.), Midday (Window Midday retained too few positive frequencies.), Close (Window Close retained too few positive frequencies.)
+

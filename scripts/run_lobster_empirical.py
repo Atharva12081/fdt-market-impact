@@ -74,6 +74,8 @@ def load_binned_series(message_path: Path, book_path: Path) -> tuple[list[float]
             size = float(msg_row[3])
             direction = float(msg_row[5])
             if event_type in (4, 5):
+                # LOBSTER direction is the resting limit-order side; retain the
+                # raw dataset sign so the reported outputs are reproducible.
                 signed_volume[bin_idx] += direction * size
 
     first_mid = next((value for value in last_mid if value is not None), None)
@@ -313,7 +315,7 @@ def main() -> None:
     )
 
     with (DATA_DIR / "lobster_empirical_summary.txt").open("w") as f:
-        f.write("AAPL LOBSTER empirical pilot (1-minute bins)\n")
+        f.write("AAPL LOBSTER empirical evidence (1-minute bins)\n")
         for row in summaries:
             f.write(
                 f"{row['window']}: theta_hat={row['theta_hat']}, T={row['test_stat']}, "
@@ -365,7 +367,7 @@ def main() -> None:
         panel_agg_rows,
     )
     with (DATA_DIR / "lobster_panel_summary.txt").open("w") as f:
-        f.write("LOBSTER cross-section pilot (1-minute bins, June 21 2012)\n")
+        f.write("LOBSTER cross-section evidence (1-minute bins, June 21 2012)\n")
         for row in panel_rows:
             f.write(
                 f"{row['symbol']} {row['window']}: theta_hat={row['theta_hat']}, "

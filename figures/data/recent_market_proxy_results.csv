@@ -1,0 +1,61 @@
+market,symbol,proxy,phase,start_date,end_date,trading_days,n_obs,m,theta_hat,test_stat,critical_value,p_value,deviation_ratio,reject_5pct,error
+US,AAPL,signed_volume,Open,2026-05-15,2026-05-29,10,239,4,,,,,,,Window Open retained too few positive frequencies.
+US,AAPL,signed_volume,Midday,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Midday retained too few positive frequencies.
+US,AAPL,signed_volume,Close,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Close retained too few positive frequencies.
+US,AAPL,signed_sqrt_volume,Open,2026-05-15,2026-05-29,10,239,4,2.445265,0.184,1.1849,0.98,0.2898,0,
+US,AAPL,signed_sqrt_volume,Midday,2026-05-15,2026-05-29,10,240,4,1.233833,0.254,0.2774,0.08,0.6887,0,
+US,AAPL,signed_sqrt_volume,Close,2026-05-15,2026-05-29,10,240,4,1.624899,0.2239,0.3452,0.17,0.5814,0,
+US,MSFT,signed_volume,Open,2026-05-15,2026-05-29,10,239,4,,,,,,,Window Open retained too few positive frequencies.
+US,MSFT,signed_volume,Midday,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Midday retained too few positive frequencies.
+US,MSFT,signed_volume,Close,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Close retained too few positive frequencies.
+US,MSFT,signed_sqrt_volume,Open,2026-05-15,2026-05-29,10,239,4,2.689082,6.6562,5.4131,0.0367,0.858,1,
+US,MSFT,signed_sqrt_volume,Midday,2026-05-15,2026-05-29,10,240,4,2.450848,0.3091,0.2419,0.03,0.8239,1,
+US,MSFT,signed_sqrt_volume,Close,2026-05-15,2026-05-29,10,240,4,0.496149,7.5403,6.7974,0.03,0.7362,1,
+US,JPM,signed_volume,Open,2026-05-15,2026-05-29,10,239,4,,,,,,,Window Open retained too few positive frequencies.
+US,JPM,signed_volume,Midday,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Midday retained too few positive frequencies.
+US,JPM,signed_volume,Close,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Close retained too few positive frequencies.
+US,JPM,signed_sqrt_volume,Open,2026-05-15,2026-05-29,10,239,4,1.209581,8.2258,14.0813,0.2767,0.5332,0,
+US,JPM,signed_sqrt_volume,Midday,2026-05-15,2026-05-29,10,240,4,0.691598,1.4031,1.0408,0.0133,0.8413,1,
+US,JPM,signed_sqrt_volume,Close,2026-05-15,2026-05-29,10,240,4,0.550595,0.9588,1.468,0.1467,0.6114,0,
+US,XOM,signed_volume,Open,2026-05-15,2026-05-29,10,239,4,,,,,,,Window Open retained too few positive frequencies.
+US,XOM,signed_volume,Midday,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Midday retained too few positive frequencies.
+US,XOM,signed_volume,Close,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Close retained too few positive frequencies.
+US,XOM,signed_sqrt_volume,Open,2026-05-15,2026-05-29,10,239,4,4.153685,1.5095,2.2186,0.1533,0.5882,0,
+US,XOM,signed_sqrt_volume,Midday,2026-05-15,2026-05-29,10,240,4,0.454018,3.0516,7.0529,0.64,0.4435,0,
+US,XOM,signed_sqrt_volume,Close,2026-05-15,2026-05-29,10,240,4,0.974274,1.1044,2.9945,0.72,0.4263,0,
+US,NVDA,signed_volume,Open,2026-05-15,2026-05-29,10,239,4,,,,,,,Window Open retained too few positive frequencies.
+US,NVDA,signed_volume,Midday,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Midday retained too few positive frequencies.
+US,NVDA,signed_volume,Close,2026-05-15,2026-05-29,10,240,4,,,,,,,Window Close retained too few positive frequencies.
+US,NVDA,signed_sqrt_volume,Open,2026-05-15,2026-05-29,10,239,4,,,,,,,Window Open retained too few positive frequencies.
+US,NVDA,signed_sqrt_volume,Midday,2026-05-15,2026-05-29,10,240,4,2.433341,0.0929,0.3766,0.69,0.3835,0,
+US,NVDA,signed_sqrt_volume,Close,2026-05-15,2026-05-29,10,240,4,3.685993,0.0615,0.4148,0.99,0.2688,0,
+India,RELIANCE.NS,signed_volume,Open,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Open retained too few positive frequencies.
+India,RELIANCE.NS,signed_volume,Midday,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Midday retained too few positive frequencies.
+India,RELIANCE.NS,signed_volume,Close,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Close retained too few positive frequencies.
+India,RELIANCE.NS,signed_sqrt_volume,Open,2026-05-18,2026-05-29,9,216,4,0.820641,3.9795,1.985,0.0,0.9913,1,
+India,RELIANCE.NS,signed_sqrt_volume,Midday,2026-05-18,2026-05-29,9,216,4,0.419301,0.6683,0.7129,0.0567,0.7476,0,
+India,RELIANCE.NS,signed_sqrt_volume,Close,2026-05-18,2026-05-29,9,216,4,0.777606,1.1757,1.2779,0.06,0.6586,0,
+India,HDFCBANK.NS,signed_volume,Open,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Open retained too few positive frequencies.
+India,HDFCBANK.NS,signed_volume,Midday,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Midday retained too few positive frequencies.
+India,HDFCBANK.NS,signed_volume,Close,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Close retained too few positive frequencies.
+India,HDFCBANK.NS,signed_sqrt_volume,Open,2026-05-18,2026-05-29,9,216,4,5.757719,0.0051,0.0089,0.17,0.6181,0,
+India,HDFCBANK.NS,signed_sqrt_volume,Midday,2026-05-18,2026-05-29,9,216,4,1.109742,0.6418,1.3327,0.5333,0.4546,0,
+India,HDFCBANK.NS,signed_sqrt_volume,Close,2026-05-18,2026-05-29,9,216,4,4.393303,0.0366,0.1122,0.5367,0.4322,0,
+India,INFY.NS,signed_volume,Open,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Open retained too few positive frequencies.
+India,INFY.NS,signed_volume,Midday,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Midday retained too few positive frequencies.
+India,INFY.NS,signed_volume,Close,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Close retained too few positive frequencies.
+India,INFY.NS,signed_sqrt_volume,Open,2026-05-18,2026-05-29,9,216,4,2.206811,5.0683,2.9118,0.0033,0.9457,1,
+India,INFY.NS,signed_sqrt_volume,Midday,2026-05-18,2026-05-29,9,216,4,0.400927,1.8098,1.7172,0.0367,0.7737,1,
+India,INFY.NS,signed_sqrt_volume,Close,2026-05-18,2026-05-29,9,216,4,0.656756,50.3988,23.2715,0.0,0.911,1,
+India,TCS.NS,signed_volume,Open,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Open retained too few positive frequencies.
+India,TCS.NS,signed_volume,Midday,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Midday retained too few positive frequencies.
+India,TCS.NS,signed_volume,Close,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Close retained too few positive frequencies.
+India,TCS.NS,signed_sqrt_volume,Open,2026-05-18,2026-05-29,9,216,4,0.545833,2.3935,1.9246,0.0433,0.8207,1,
+India,TCS.NS,signed_sqrt_volume,Midday,2026-05-18,2026-05-29,9,216,4,0.251222,4.1478,5.3603,0.1033,0.6607,0,
+India,TCS.NS,signed_sqrt_volume,Close,2026-05-18,2026-05-29,9,216,4,1.768562,15.4259,14.2131,0.03,0.7489,1,
+India,ICICIBANK.NS,signed_volume,Open,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Open retained too few positive frequencies.
+India,ICICIBANK.NS,signed_volume,Midday,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Midday retained too few positive frequencies.
+India,ICICIBANK.NS,signed_volume,Close,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Close retained too few positive frequencies.
+India,ICICIBANK.NS,signed_sqrt_volume,Open,2026-05-18,2026-05-29,9,216,4,,,,,,,Window Open retained too few positive frequencies.
+India,ICICIBANK.NS,signed_sqrt_volume,Midday,2026-05-18,2026-05-29,9,216,4,1.368071,0.4146,0.3121,0.02,0.8385,1,
+India,ICICIBANK.NS,signed_sqrt_volume,Close,2026-05-18,2026-05-29,9,216,4,0.214221,0.2317,0.4877,0.2167,0.567,0,

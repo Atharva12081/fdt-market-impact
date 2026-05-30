@@ -1,12 +1,16 @@
 .DS_Store
+__pycache__/
+*.pyc
 *.aux
 *.log
 *.out
 *.synctex
+*.synctex(busy)
 *.synctex.gz
 *.fdb_latexmk
 *.fls
 paper.pdf
+research_paper.pdf
 paper_before_figures.pdf
 paper_test_append.pdf
 paper\ 2.synctex(busy)

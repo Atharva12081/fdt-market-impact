@@ -1,4 +1,4 @@
-AAPL LOBSTER empirical pilot (1-minute bins)
-Open: theta_hat=4.074109, T=0.0009, crit=0.0237, p=1.0, ratio=0.2158, reject=0
-Midday: theta_hat=1.16674, T=0.018, crit=0.0105, p=0.003, ratio=1.1036, reject=1
-Close: theta_hat=2.224823, T=0.0014, crit=0.004, p=0.358, ratio=0.6856, reject=0
+AAPL LOBSTER empirical evidence (1-minute bins)
+Open: theta_hat=4.094378, T=0.0009, crit=0.0235, p=1.0, ratio=0.2158, reject=0
+Midday: theta_hat=1.172545, T=0.0178, crit=0.0104, p=0.003, ratio=1.1036, reject=1
+Close: theta_hat=2.235892, T=0.0014, crit=0.004, p=0.358, ratio=0.6856, reject=0
