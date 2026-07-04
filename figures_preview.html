@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FDT Figure Preview</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --ink: #16202a;
+      --muted: #5c6773;
+      --card: #ffffff;
+      --border: #d8dee8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 20px 48px;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, #eef2f8 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+    }
+    p.lead {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 18px 14px;
+      margin: 0 0 22px;
+      box-shadow: 0 12px 28px rgba(18, 32, 54, 0.06);
+    }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+    p.caption {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>FDT Figure Preview</h1>
+    <p class="lead">
+      Direct preview of the manuscript figures while the LaTeX PDF remains uncompiled on this machine.
+    </p>
+
+    <section>
+      <h2>Figure 2. Equilibrium FDT Signature</h2>
+      <p class="caption">
+        The equilibrium benchmark overlays the impact-side dissipation curve with the volatility-side spectral response.
+      </p>
+      <img src="figures/generated/fdt_signature.png" alt="Equilibrium FDT signature figure" />
+    </section>
+
+    <section>
+      <h2>Figure 3. Relaxation Spectrum and Kernel Compression</h2>
+      <p class="caption">
+        The left panel shows a sparse relaxation spectrum, and the right panel shows the resulting kernel against a reduced approximation.
+      </p>
+      <img src="figures/generated/relaxation_spectrum.png" alt="Relaxation spectrum and reduced kernel figure" />
+    </section>
+
+    <section>
+      <h2>Figure 4. Stylized Frequency-by-Regime Stress Map</h2>
+      <p class="caption">
+        Blue regions are close to equilibrium, while warm regions indicate frequency bands with elevated deviation from the FDT benchmark.
+      </p>
+      <img src="figures/generated/stress_heatmap.png" alt="Stylized stress heatmap" />
+    </section>
+
+    <section>
+      <h2>Figure 5. Representative Monte Carlo Deviation Plot</h2>
+      <p class="caption">
+        A representative alternative draw at <em>n = 2^14</em>, comparing the true deviation profile with the estimated one.
+      </p>
+      <img src="figures/generated/monte_carlo_delta.png" alt="Representative Monte Carlo deviation figure" />
+    </section>
+
+    <section>
+      <h2>Figure 6. Rolling-Window Operational Validation</h2>
+      <p class="caption">
+        The top row shows the rolling thermal index and test statistic across 60 sessions, while the bottom panel shows how stress concentrates in frequency space as the stressed regime intensifies.
+      </p>
+      <img src="figures/generated/operational_validation.png" alt="Rolling-window operational validation figure" />
+    </section>
+
+    <section>
+      <h2>Figure 7. AAPL LOBSTER Empirical Evidence</h2>
+      <p class="caption">
+        The top row compares the normalized dissipation curve with the normalized FDT benchmark in the open, midday, and close windows. The bottom panel tracks the rolling thermal index through the day and marks windows where the bootstrap test rejects.
+      </p>
+      <img src="figures/generated/lobster_empirical.png" alt="AAPL LOBSTER empirical evidence figure" />
+    </section>
+
+    <section>
+      <h2>Figure 8. Real-Data Cross-Section Breakdown</h2>
+      <p class="caption">
+        A compact same-date result: only AAPL exhibits a midday rejection, while GOOG and AMZN show thermal variation without a corresponding equilibrium break.
+      </p>
+      <img src="figures/generated/realdata_breakdown.png" alt="Real-data cross-section breakdown figure" />
+    </section>
+
+    <section>
+      <h2>Figure 9. Market-State Map</h2>
+      <p class="caption">
+        Synthetic equilibrium, transition, and stress regimes are plotted in the same space as the real AAPL windows, using thermal index on one axis and deviation magnitude on the other.
+      </p>
+      <img src="figures/generated/market_state_map.png" alt="Market state map figure" />
+    </section>
+  </main>
+</body>
+</html>
